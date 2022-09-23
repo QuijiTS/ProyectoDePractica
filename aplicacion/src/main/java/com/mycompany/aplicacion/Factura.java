@@ -23,11 +23,28 @@ public class Factura extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         actualizarTabla();
+        llenarPlatillos();
+    }
+    
+    public void llenarPlatillos() {
+        jComboBox1.removeAllItems();
+    
+        String productos = "SELECT * FROM Platillo";
+        
+        try (PreparedStatement preSt = connection.prepareStatement(productos)) {
+            ResultSet result = preSt.executeQuery();
+            
+            while(result.next()) {
+                jComboBox1.addItem(result.getString("NombrePlatillo"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al actualizar la tabla: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void actualizarTabla() {
-        String[] nombreColumnas = {"Codigo","Platillo","Codigo de Platillo","Cliente","NIT","Vendedor"};
-        String[] registros = new String[6];
+        String[] nombreColumnas = {"Codigo","Codigo de Platillo","Nombre de Platillo","Precio","Cliente","NIT","Vendedor"};
+        String[] registros = new String[7];
         
         DefaultTableModel model = new DefaultTableModel(null, nombreColumnas);
         
@@ -38,12 +55,11 @@ public class Factura extends javax.swing.JFrame {
             
             while(result.next()) {
                 registros[0] = result.getString("NumeroFactura");
-                registros[1] = result.getString("Platillo");
-                registros[2] = result.getString("CodigoPlatillo");
-                registros[3] = result.getString("NombreCliente");
-                registros[4] = result.getString("NITCliente");
-                registros[5] = result.getString("Vendedor");
-                model.addRow(registros);
+                registros[1] = result.getString("CodigoPlatillo");
+                registros[4] = result.getString("NombreCliente");
+                registros[5] = result.getString("NITCliente");
+                registros[6] = result.getString("Vendedor");
+                model.addRow(registros); 
             }
             TablaFactura.setModel(model);
         } catch (SQLException e) {
@@ -64,13 +80,7 @@ public class Factura extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNumeroF = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        txtPlatillo = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
-        txtCodigoP = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
         txtNombreC = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
         txtNITC = new javax.swing.JTextField();
@@ -80,6 +90,8 @@ public class Factura extends javax.swing.JFrame {
         btCrearF = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaFactura = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,47 +118,9 @@ public class Factura extends javax.swing.JFrame {
                 .addGap(81, 81, 81))
         );
 
-        txtNumeroF.setBackground(new java.awt.Color(91, 33, 129));
-        txtNumeroF.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtNumeroF.setForeground(new java.awt.Color(204, 204, 204));
-        txtNumeroF.setText("Numero de Factura");
-        txtNumeroF.setBorder(null);
-        txtNumeroF.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNumeroFFocusGained(evt);
-            }
-        });
-        txtNumeroF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroFActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setText("N.° de Factura");
-
-        txtPlatillo.setBackground(new java.awt.Color(91, 33, 129));
-        txtPlatillo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtPlatillo.setForeground(new java.awt.Color(204, 204, 204));
-        txtPlatillo.setText("Platillo");
-        txtPlatillo.setBorder(null);
-        txtPlatillo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPlatilloFocusGained(evt);
-            }
-        });
-
-        txtCodigoP.setBackground(new java.awt.Color(91, 33, 129));
-        txtCodigoP.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtCodigoP.setForeground(new java.awt.Color(204, 204, 204));
-        txtCodigoP.setText("Codigo de Platillo");
-        txtCodigoP.setBorder(null);
-        txtCodigoP.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCodigoPFocusGained(evt);
-            }
-        });
+        jLabel2.setText("Codigo de Platillo");
 
         txtNombreC.setBackground(new java.awt.Color(91, 33, 129));
         txtNombreC.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -208,76 +182,80 @@ public class Factura extends javax.swing.JFrame {
         TablaFactura.setGridColor(new java.awt.Color(211, 211, 211));
         jScrollPane1.setViewportView(TablaFactura);
 
+        jComboBox1.setBackground(new java.awt.Color(91, 33, 129));
+        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(204, 204, 204));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton1.setBackground(new java.awt.Color(91, 33, 129));
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator1)
-                            .addComponent(txtNumeroF))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator2)
-                            .addComponent(txtPlatillo, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator3)
-                            .addComponent(txtCodigoP, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombreC, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                            .addComponent(jSeparator4))
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNITC, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(jSeparator5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator6)
-                            .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btCrearF)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                                    .addComponent(btCrearF))
+                                .addGap(63, 63, 63)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNombreC)
+                                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(44, 44, 44)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNITC)
+                                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                    .addComponent(jSeparator6))))))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNITC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCodigoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNITC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
                             .addComponent(jSeparator5)
-                            .addComponent(jSeparator6)
-                            .addComponent(jSeparator3)))
+                            .addComponent(jSeparator6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNumeroF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPlatillo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
-                            .addComponent(jSeparator2))))
-                .addGap(18, 18, 18)
-                .addComponent(btCrearF)
+                        .addGap(15, 15, 15)
+                        .addComponent(btCrearF)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -305,22 +283,6 @@ public class Factura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNumeroFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroFActionPerformed
-
-    }//GEN-LAST:event_txtNumeroFActionPerformed
-
-    private void txtNumeroFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumeroFFocusGained
-        txtNumeroF.setText("");
-    }//GEN-LAST:event_txtNumeroFFocusGained
-
-    private void txtPlatilloFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPlatilloFocusGained
-        txtPlatillo.setText("");
-    }//GEN-LAST:event_txtPlatilloFocusGained
-
-    private void txtCodigoPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoPFocusGained
-        txtCodigoP.setText("");
-    }//GEN-LAST:event_txtCodigoPFocusGained
-
     private void txtNombreCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreCFocusGained
         txtNombreC.setText("");
     }//GEN-LAST:event_txtNombreCFocusGained
@@ -333,23 +295,39 @@ public class Factura extends javax.swing.JFrame {
         txtVendedor.setText("");
     }//GEN-LAST:event_txtVendedorFocusGained
 
+    public String obtenerCodigoPlatillo(String nombrePlatillo) {
+        String codigo = "";
+        
+        String productos = "SELECT * FROM Platillo";
+        
+        try (PreparedStatement preSt = connection.prepareStatement(productos)) {
+            ResultSet result = preSt.executeQuery();
+            
+            while(result.next()) {
+                if(result.getString("NombrePlatillo").equals(nombrePlatillo)) {
+                    return result.getString("CodigoPlatillo");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al actualizar la tabla: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return codigo;
+    }
+    
     private void btCrearFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearFActionPerformed
-        String numerof, platillo, codigop, nombrec, nitc, vendedor;
-        numerof = txtNumeroF.getText();
-        platillo = txtPlatillo.getText();
-        codigop = txtCodigoP.getText();
+        String codigop, nombrec, nitc, vendedor;
+        codigop = obtenerCodigoPlatillo(jComboBox1.getSelectedItem().toString());
         nombrec = txtNombreC.getText();
         nitc = txtNITC.getText();
         vendedor = txtVendedor.getText();
         
-        String insert = "INSERT INTO Factura VALUES(?,?,?,?,?,?)";
+        String insert = "INSERT INTO Factura (CodigoPlatillo, NombreCliente, NITCliente, Vendedor) VALUES(?,?,?,?)";
         try(PreparedStatement preSt = connection.prepareStatement(insert)) {
-            preSt.setString(1, numerof);
-            preSt.setString(2, platillo);
-            preSt.setString(3, codigop);
-            preSt.setString(4, nombrec);
-            preSt.setString(5, nitc);
-            preSt.setString(6, vendedor);
+            preSt.setString(1, codigop);
+            preSt.setString(2, nombrec);
+            preSt.setString(3, nitc);
+            preSt.setString(4, vendedor);
             
             preSt.executeUpdate();
             
@@ -358,6 +336,12 @@ public class Factura extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al realizar la inserción: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btCrearFActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        Login l1 = new Login();
+        l1.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,23 +381,19 @@ public class Factura extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaFactura;
     private javax.swing.JButton btCrearF;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField txtCodigoP;
     private javax.swing.JTextField txtNITC;
     private javax.swing.JTextField txtNombreC;
-    private javax.swing.JTextField txtNumeroF;
-    private javax.swing.JTextField txtPlatillo;
     private javax.swing.JTextField txtVendedor;
     // End of variables declaration//GEN-END:variables
 }

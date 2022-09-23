@@ -93,9 +93,9 @@ public class Eliminar extends javax.swing.JFrame {
         btEliminat = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
-        btActualizarTabla = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPlatillos = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,6 +139,11 @@ public class Eliminar extends javax.swing.JFrame {
         cmbCampo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         cmbCampo.setForeground(new java.awt.Color(204, 204, 204));
         cmbCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nombre", "Precio", "Tipo" }));
+        cmbCampo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCampoActionPerformed(evt);
+            }
+        });
 
         txtDato.setBackground(new java.awt.Color(91, 33, 129));
         txtDato.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -170,14 +175,9 @@ public class Eliminar extends javax.swing.JFrame {
         cmbTipo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         cmbTipo.setForeground(new java.awt.Color(204, 204, 204));
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayuno", "Fuertes", "Bebidas Frias", "Bebida Caliente", "Postre" }));
-
-        btActualizarTabla.setBackground(new java.awt.Color(91, 33, 129));
-        btActualizarTabla.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btActualizarTabla.setForeground(new java.awt.Color(204, 204, 204));
-        btActualizarTabla.setText("Actualizar Tabla");
-        btActualizarTabla.addActionListener(new java.awt.event.ActionListener() {
+        cmbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btActualizarTablaActionPerformed(evt);
+                cmbTipoActionPerformed(evt);
             }
         });
 
@@ -197,6 +197,16 @@ public class Eliminar extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaPlatillos);
 
+        jButton1.setBackground(new java.awt.Color(91, 33, 129));
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -204,24 +214,24 @@ public class Eliminar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cmbCampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGap(54, 54, 54)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jSeparator1)
                                 .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btActualizarTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btEliminat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1))
+                            .addGap(57, 57, 57)
+                            .addComponent(btEliminat, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(38, 38, 38)
+                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -240,11 +250,12 @@ public class Eliminar extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btActualizarTabla))
+                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,10 +277,6 @@ public class Eliminar extends javax.swing.JFrame {
     private void txtDatoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDatoFocusGained
         txtDato.setText(null);
     }//GEN-LAST:event_txtDatoFocusGained
-
-    private void btActualizarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarTablaActionPerformed
-        actualizarTabla();
-    }//GEN-LAST:event_btActualizarTablaActionPerformed
 
     private void btEliminatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminatActionPerformed
         String campo, dato;
@@ -310,6 +317,20 @@ public class Eliminar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btEliminatActionPerformed
 
+    private void cmbCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCampoActionPerformed
+        
+    }//GEN-LAST:event_cmbCampoActionPerformed
+
+    private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
+        actualizarTabla();
+    }//GEN-LAST:event_cmbTipoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        MenuAdministrador m1 = new MenuAdministrador();
+        m1.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -347,10 +368,10 @@ public class Eliminar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaPlatillos;
-    private javax.swing.JButton btActualizarTabla;
     private javax.swing.JButton btEliminat;
     private javax.swing.JComboBox<String> cmbCampo;
     private javax.swing.JComboBox<String> cmbTipo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

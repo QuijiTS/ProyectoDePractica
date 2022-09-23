@@ -21,7 +21,7 @@ public class Aplicacion {
         MenuAdministrador m1 = new MenuAdministrador();
         m1.setVisible(true);
         
-        Eliminar i1 = new Eliminar();
-        i1.setVisible(false);
+        Factura f1 = new Factura();
+        f1.setVisible(false);
     }
 }

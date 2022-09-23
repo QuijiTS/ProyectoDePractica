@@ -37,11 +37,9 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
-        txtType = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         BTIngreso = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -99,22 +97,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        txtType.setBackground(new java.awt.Color(91, 33, 129));
-        txtType.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtType.setForeground(new java.awt.Color(204, 204, 204));
-        txtType.setText("Tipo Usuario");
-        txtType.setBorder(null);
-        txtType.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTypeFocusGained(evt);
-            }
-        });
-        txtType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTypeActionPerformed(evt);
-            }
-        });
-
         txtPass.setBackground(new java.awt.Color(91, 33, 129));
         txtPass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPass.setForeground(new java.awt.Color(204, 204, 204));
@@ -152,20 +134,16 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(65, 65, 65)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2))))
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(BTIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -175,21 +153,17 @@ public class Login extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(78, 78, 78)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(67, 67, 67)
                 .addComponent(BTIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(71, Short.MAX_VALUE))
         );
@@ -207,17 +181,13 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtPassActionPerformed
 
-    private void txtTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTypeActionPerformed
-        
-    }//GEN-LAST:event_txtTypeActionPerformed
-
     private void BTIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTIngresoActionPerformed
         String usuario = txtUser.getText();
         String contrasena = txtPass.getText();
-        String tipo = txtType.getText();
         String tipoA = "Administrador";
         String tipoC = "Cajero";
-
+        String type = "";
+        
         String users = "SELECT * FROM Usuario";
 
         try (PreparedStatement preSt = connection.prepareStatement(users)) {
@@ -229,18 +199,19 @@ public class Login extends javax.swing.JFrame {
                 String usuarioActual = result.getString("User"); //Verificamos la columna "username" de la base de datos
                 String passActual = result.getString("Pass"); //Verificamos la columna "pass" de la base de datos
                 String typeActual = result.getString("TipoUsuario");
-                if(usuarioActual.equals(usuario) && passActual.equals(contrasena) && typeActual.equals(tipo)) {
+                if(usuarioActual.equals(usuario) && passActual.equals(contrasena)) {
                     exists = true;
+                    type = typeActual;
                     break;
                 }
             }
 
-            if(exists && tipo.equals(tipoA)) {
+            if(exists && type.equals(tipoA)) {
                 //Se accede al Sistema
                 this.setVisible(false);
                 MenuAdministrador menu = new MenuAdministrador();
                 menu.setVisible(true);
-            } else if(exists && tipo.equals(tipoC)){
+            } else if(exists && type.equals(tipoC)){
                 //Se accede al Sistema
                 this.setVisible(false);
                 Factura f1 = new Factura();
@@ -262,10 +233,6 @@ public class Login extends javax.swing.JFrame {
     private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
         txtPass.setText("");
     }//GEN-LAST:event_txtPassFocusGained
-
-    private void txtTypeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTypeFocusGained
-        txtType.setText("");
-    }//GEN-LAST:event_txtTypeFocusGained
 
     /**
      * @param args the command line arguments
@@ -312,9 +279,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPasswordField txtPass;
-    private javax.swing.JTextField txtType;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
