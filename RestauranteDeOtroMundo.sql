@@ -98,10 +98,10 @@ INSERT INTO Factura VALUES
 (4,"Crepas","PP001",30,"Ana Armira","359678547","EC003"),
 (5,"Vino","BF005",25,"Cesar Valenzuela","856974128","EC001"),
 (6,"Spaghetti Alla Bolognesa","PF005",55,"Cesar Valenzuela","856974128","EC001"),
-(7,"Limonada","BF001","","","",""),
-(8,"","","","","",""),
-(9,"","","","","",""),
-(10,"","","","","","");
+(7,"Limonada","BF001",15,"Agustin Depaz","487563297","EC004"),
+(8,"Cheeseburger","PF002",45,"José Fuentes","487563297","EC004"),
+(9,"Chocolate","BC003",12,"Silvia Enriquez","078523146","EC002"),
+(10,"Macarrones Dulces","PP004",25,"Mariano Mox","078523146","EC002");
 
 DROP DATABASE RestauranteDeOtroMundo;
 
