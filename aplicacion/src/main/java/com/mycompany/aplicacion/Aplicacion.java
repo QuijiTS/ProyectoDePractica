@@ -19,9 +19,9 @@ public class Aplicacion {
         l1.setVisible(true);
         
         MenuAdministrador m1 = new MenuAdministrador();
-        m1.setVisible(true);
+        m1.setVisible(false);
         
         Factura f1 = new Factura();
-        f1.setVisible(false);
+        f1.setVisible(true);
     }
 }

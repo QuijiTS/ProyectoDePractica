@@ -56,6 +56,8 @@ public class Factura extends javax.swing.JFrame {
             while(result.next()) {
                 registros[0] = result.getString("NumeroFactura");
                 registros[1] = result.getString("CodigoPlatillo");
+                registros[2] = result.getString("NombrePlatillo");
+                registros[3] = result.getString("Precio");
                 registros[4] = result.getString("NombreCliente");
                 registros[5] = result.getString("NITCliente");
                 registros[6] = result.getString("Vendedor");
@@ -92,6 +94,9 @@ public class Factura extends javax.swing.JFrame {
         TablaFactura = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +130,6 @@ public class Factura extends javax.swing.JFrame {
         txtNombreC.setBackground(new java.awt.Color(91, 33, 129));
         txtNombreC.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         txtNombreC.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombreC.setText("Nombre de Cliente");
         txtNombreC.setBorder(null);
         txtNombreC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -136,7 +140,6 @@ public class Factura extends javax.swing.JFrame {
         txtNITC.setBackground(new java.awt.Color(91, 33, 129));
         txtNITC.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         txtNITC.setForeground(new java.awt.Color(204, 204, 204));
-        txtNITC.setText("NITCliente");
         txtNITC.setBorder(null);
         txtNITC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -147,7 +150,6 @@ public class Factura extends javax.swing.JFrame {
         txtVendedor.setBackground(new java.awt.Color(91, 33, 129));
         txtVendedor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         txtVendedor.setForeground(new java.awt.Color(204, 204, 204));
-        txtVendedor.setText("Vendedor");
         txtVendedor.setBorder(null);
         txtVendedor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -186,6 +188,11 @@ public class Factura extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(204, 204, 204));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(91, 33, 129));
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -196,6 +203,21 @@ public class Factura extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel3.setBackground(new java.awt.Color(91, 33, 129));
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("Nombre de Cliente");
+
+        jLabel4.setBackground(new java.awt.Color(91, 33, 129));
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("NITCliente");
+        jLabel4.setToolTipText("");
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setText("Vendedor");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -216,17 +238,21 @@ public class Factura extends javax.swing.JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                                     .addComponent(btCrearF))
                                 .addGap(63, 63, 63)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNombreC)
-                                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNombreC)
+                                        .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3))
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNITC)
-                                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(45, 45, 45)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                    .addComponent(jSeparator6))))))
+                                    .addComponent(jSeparator6)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -234,7 +260,11 @@ public class Factura extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,12 +275,14 @@ public class Factura extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
-                            .addComponent(jSeparator5)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
                             .addComponent(jSeparator6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(btCrearF)))
+                        .addComponent(btCrearF))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -284,15 +316,15 @@ public class Factura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreCFocusGained
-        txtNombreC.setText("");
+        
     }//GEN-LAST:event_txtNombreCFocusGained
 
     private void txtNITCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNITCFocusGained
-        txtNITC.setText("");
+        
     }//GEN-LAST:event_txtNITCFocusGained
 
     private void txtVendedorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVendedorFocusGained
-        txtVendedor.setText("");
+        
     }//GEN-LAST:event_txtVendedorFocusGained
 
     public String obtenerCodigoPlatillo(String nombrePlatillo) {
@@ -315,19 +347,43 @@ public class Factura extends javax.swing.JFrame {
         return codigo;
     }
     
+    public String obtenerPrecio(String nombrePlatillo) {
+        String codigo = "";
+        
+        String productos = "SELECT * FROM Platillo";
+        
+        try (PreparedStatement preSt = connection.prepareStatement(productos)) {
+            ResultSet result = preSt.executeQuery();
+            
+            while(result.next()) {
+                if(result.getString("NombrePlatillo").equals(nombrePlatillo)) {
+                    return result.getString("Precio");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al actualizar la tabla: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return codigo;
+    }
+    
     private void btCrearFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearFActionPerformed
-        String codigop, nombrec, nitc, vendedor;
+        String precio, nombrep ,codigop, nombrec, nitc, vendedor;
         codigop = obtenerCodigoPlatillo(jComboBox1.getSelectedItem().toString());
+        nombrep = jComboBox1.getSelectedItem().toString();
+        precio = obtenerPrecio(jComboBox1.getSelectedItem().toString());
         nombrec = txtNombreC.getText();
         nitc = txtNITC.getText();
         vendedor = txtVendedor.getText();
         
-        String insert = "INSERT INTO Factura (CodigoPlatillo, NombreCliente, NITCliente, Vendedor) VALUES(?,?,?,?)";
+        String insert = "INSERT INTO Factura (NombrePlatillo, CodigoPlatillo, Precio, NombreCliente, NITCliente, Vendedor) VALUES(?,?,?,?,?,?)";
         try(PreparedStatement preSt = connection.prepareStatement(insert)) {
-            preSt.setString(1, codigop);
-            preSt.setString(2, nombrec);
-            preSt.setString(3, nitc);
-            preSt.setString(4, vendedor);
+            preSt.setString(1, nombrep);
+            preSt.setString(2, codigop);
+            preSt.setString(3, precio);
+            preSt.setString(4, nombrec);
+            preSt.setString(5, nitc);
+            preSt.setString(6, vendedor);
             
             preSt.executeUpdate();
             
@@ -342,6 +398,10 @@ public class Factura extends javax.swing.JFrame {
         Login l1 = new Login();
         l1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,6 +445,9 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -30,9 +30,10 @@ REFERENCES Empleado(CodigoEmpleado)
 );
 
 CREATE TABLE Factura(
-    NumeroFactura INT NOT NULL,
-    Platillo VARCHAR(20) NOT NULL,
+    NumeroFactura INT NOT NULL AUTO_INCREMENT,
+    NombrePlatillo VARCHAR(20) NOT NULL,
     CodigoPlatillo VARCHAR(5) NOT NULL,
+    Precio DECIMAL(5,2) NOT NULL,
     NombreCliente VARCHAR(20) NOT NULL,
     NITCliente VARCHAR(13) NOT NULL,
     Vendedor VARCHAR(5) NOT NULL,
@@ -91,6 +92,8 @@ INSERT INTO Usuario VALUES
 ("UserC004","EC004","fjkcmnmr","Cajero");
 
 DROP DATABASE RestauranteDeOtroMundo;
+
+DROP TABLE Factura;
 
 System cls;
 

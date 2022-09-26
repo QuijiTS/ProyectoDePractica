@@ -161,7 +161,9 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btEliminarActionPerformed
 
     private void btReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportesActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        Reporte r1 = new Reporte();
+        r1.setVisible(true);
     }//GEN-LAST:event_btReportesActionPerformed
 
     /**
