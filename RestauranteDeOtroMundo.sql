@@ -31,11 +31,11 @@ REFERENCES Empleado(CodigoEmpleado)
 
 CREATE TABLE Factura(
     NumeroFactura INT NOT NULL AUTO_INCREMENT,
-    NombrePlatillo VARCHAR(20) NOT NULL,
+    NombrePlatillo VARCHAR(25) NOT NULL,
     CodigoPlatillo VARCHAR(5) NOT NULL,
     Precio DECIMAL(5,2) NOT NULL,
-    NombreCliente VARCHAR(20) NOT NULL,
-    NITCliente VARCHAR(13) NOT NULL,
+    NombreCliente VARCHAR(25) NOT NULL,
+    NITCliente VARCHAR(9) NOT NULL,
     Vendedor VARCHAR(5) NOT NULL,
     PRIMARY KEY(NumeroFactura),
     FOREIGN KEY(Vendedor)
@@ -91,6 +91,18 @@ INSERT INTO Usuario VALUES
 ("UserC003","EC003","fcnedxaz","Cajero"),
 ("UserC004","EC004","fjkcmnmr","Cajero");
 
+INSERT INTO Factura VALUES
+(1,"Gaseosa","BF003",15,"Amanda Alvarez","325487529","EC003"),
+(2,"Pizza Personal","PF003",45,"Amanda Alvarez","325487529","EC003"),
+(3,"Té","BC002",10,"Ana Armira","359678547","EC003"),
+(4,"Crepas","PP001",30,"Ana Armira","359678547","EC003"),
+(5,"Vino","BF005",25,"Cesar Valenzuela","856974128","EC001"),
+(6,"Spaghetti Alla Bolognesa","PF005",55,"Cesar Valenzuela","856974128","EC001"),
+(7,"Limonada","BF001","","","",""),
+(8,"","","","","",""),
+(9,"","","","","",""),
+(10,"","","","","","");
+
 DROP DATABASE RestauranteDeOtroMundo;
 
 DROP TABLE Factura;
@@ -98,3 +110,5 @@ DROP TABLE Factura;
 System cls;
 
 Select * from Platillo;
+
+SELECT * FROM Factura WHERE Precio > 40 ORDER BY Precio DESC LIMIT 5;
