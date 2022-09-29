@@ -147,9 +147,9 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
                 <StringItem index="0" value="Top 5 desayunos m&#xe1;s vendidos"/>
-                <StringItem index="1" value="Top 5 platos fertes m&#xe1;s vendidios"/>
-                <StringItem index="2" value="Ventas mayores a Q100.00"/>
-                <StringItem index="3" value="Ventas Menores a Q100.00"/>
+                <StringItem index="1" value="Top 5 platos fuertes m&#xe1;s vendidios"/>
+                <StringItem index="2" value="Ventas mayores a Q40.00"/>
+                <StringItem index="3" value="Ventas Menores a Q40.00"/>
               </StringArray>
             </Property>
           </Properties>

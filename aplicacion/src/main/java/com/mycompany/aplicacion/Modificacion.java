@@ -328,8 +328,7 @@ public class Modificacion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNuevoFocusGained
 
     private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
-        String campo, codigo, nuevo;
-        campo = cmbCampo.getSelectedItem().toString();
+        String codigo, nuevo;
         codigo = txtCodigo.getText();
         nuevo = txtNuevo.getText();
         

@@ -323,7 +323,7 @@ public class Eliminar extends javax.swing.JFrame {
             actualizarTabla();
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar el campo: " + e.getMessage(), "Error de Actualizacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al eliminar el campo: " + e.getMessage(), "Error de Eliminacion", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btEliminatActionPerformed
 

@@ -27,11 +27,38 @@ public class Reporte extends javax.swing.JFrame {
     }
     
     public void actualizarTabla1(){
-        String[] nombreColumnas = {""};
-        String[] registros = new String[];
+        String[] nombreColumnas = {"Nombre de Platillo","Cantidad de ventas"};
+        String[] registros = new String[2];
         
         int posicion = cmbReportes.getSelectedIndex();
         String reporte;
+        
+        switch(posicion) {
+            case 0:
+                reporte = "SELECT Factura.NombrePlatillo, COUNT(Factura.NombrePlatillo) FROM Factura INNER JOIN Platillo ON Factura.NombrePlatillo = Platillo.NombrePlatillo WHERE Platillo.TipoPlatillo = 'Desayuno' GROUP BY NombrePlatillo ORDER BY COUNT(Factura.NombrePlatillo) DESC LIMIT 5";
+                break;
+            case 1:
+                reporte = "SELECT Factura.NombrePlatillo, COUNT(Factura.NombrePlatillo) FROM Factura INNER JOIN Platillo ON Factura.NombrePlatillo = Platillo.NombrePlatillo WHERE Platillo.TipoPlatillo = 'Fuertes' GROUP BY NombrePlatillo ORDER BY COUNT(Factura.NombrePlatillo) DESC LIMIT 5";
+                break;
+            default:
+                reporte = "SELECT Factura.NombrePlatillo, COUNT(Factura.NombrePlatillo) FROM Factura INNER JOIN Platillo ON Factura.NombrePlatillo = Platillo.NombrePlatillo WHERE Platillo.TipoPlatillo = 'Desayuno' GROUP BY NombrePlatillo ORDER BY COUNT(Factura.NombrePlatillo) DESC LIMIT 5";
+                break;
+        }
+        
+         DefaultTableModel model = new DefaultTableModel(null, nombreColumnas);
+               
+        try (PreparedStatement preSt = connection.prepareStatement(reporte)) {
+            ResultSet result = preSt.executeQuery();
+            
+            while(result.next()) {
+                registros[0] = result.getString("NombrePlatillo");
+                registros[1] = result.getString("COUNT(Factura.NombrePlatillo)");
+                model.addRow(registros);
+            }
+            TablaReportes.setModel(model);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al actualizar la tabla: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void actualizarTabla2(){
@@ -60,8 +87,8 @@ public class Reporte extends javax.swing.JFrame {
             
             while(result.next()) {
                 registros[0] = result.getString("NumeroFactura");
-                registros[1] = result.getString("NombrePlatillo");
-                registros[2] = result.getString("CodigoPlatillo");
+                registros[1] = result.getString("CodigoPlatillo");
+                registros[2] = result.getString("NombrePlatillo");
                 registros[3] = result.getString("Precio");
                 registros[4] = result.getString("NombreCliente");
                 registros[5] = result.getString("NITCliente");
@@ -122,7 +149,7 @@ public class Reporte extends javax.swing.JFrame {
         cmbReportes.setBackground(new java.awt.Color(91, 33, 129));
         cmbReportes.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         cmbReportes.setForeground(new java.awt.Color(204, 204, 204));
-        cmbReportes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 5 desayunos más vendidos", "Top 5 platos fertes más vendidios", "Ventas mayores a Q100.00", "Ventas Menores a Q100.00" }));
+        cmbReportes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 5 desayunos más vendidos", "Top 5 platos fuertes más vendidios", "Ventas mayores a Q40.00", "Ventas Menores a Q40.00" }));
         cmbReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbReportesActionPerformed(evt);
@@ -233,14 +260,13 @@ public class Reporte extends javax.swing.JFrame {
 
     private void btGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGenerarReporteActionPerformed
         int posicion = cmbReportes.getSelectedIndex();
-        String reporte;
         
         switch(posicion) {
             case 0:
-                
+                actualizarTabla1();
                 break;
             case 1:
-            
+                actualizarTabla1();
                 break;
             case 2:
                 actualizarTabla2();
