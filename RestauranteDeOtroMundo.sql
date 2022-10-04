@@ -26,7 +26,7 @@ CREATE TABLE Usuario(
     TipoUsuario VARCHAR(15) NOT NULL,
     PRIMARY KEY(User),
     FOREIGN KEY(CodigoEmpleado)
-REFERENCES Empleado(CodigoEmpleado)
+REFERENCES Empleado(CodigoEmpleado) ON DELETE CASCADE
 );
 
 CREATE TABLE Factura(
@@ -39,9 +39,9 @@ CREATE TABLE Factura(
     Vendedor VARCHAR(5) NOT NULL,
     PRIMARY KEY(NumeroFactura),
     FOREIGN KEY(Vendedor)
-REFERENCES Empleado(CodigoEmpleado),
+REFERENCES Empleado(CodigoEmpleado) ON DELETE CASCADE,
     FOREIGN KEY(CodigoPlatillo)
-REFERENCES Platillo(CodigoPlatillo)
+REFERENCES Platillo(CodigoPlatillo) ON DELETE CASCADE
 );
 
 INSERT INTO Empleado VALUES

@@ -70,13 +70,13 @@ public class Reporte extends javax.swing.JFrame {
         
         switch(posicion) {
             case 2:
-                reporte = "SELECT * FROM Factura WHERE Precio > 40 ORDER BY Precio DESC LIMIT 5";
+                reporte = "SELECT * FROM Factura WHERE Precio > 40 ORDER BY Precio";
                 break;
             case 3:
-                reporte = "SELECT * FROM Factura WHERE Precio < 40 ORDER BY Precio DESC LIMIT 5;";
+                reporte = "SELECT * FROM Factura WHERE Precio < 40 ORDER BY Precio;";
                 break;
             default:
-                reporte = "SELECT * FROM Factura WHERE Precio > 40 ORDER BY Precio DESC LIMIT 5";
+                reporte = "SELECT * FROM Factura WHERE Precio > 40 ORDER BY Precio";
                 break;
         }
         
